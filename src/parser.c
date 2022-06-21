@@ -5,9 +5,9 @@
 
 /** \brief Parsea los datos los datos de los pasajeros desde el archivo data.csv (modo texto).
  *
- * \param path char* REVISAR ESTA FUNCION
- * \param pArrayListPassenger LinkedList*
- * \return int
+ * \param path char* Puntero al archivo
+ * \param pArrayListPassenger LinkedList* Puntero a la lista
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
@@ -46,9 +46,9 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 
 /** \brief Parsea los datos los datos de los pasajeros desde el archivo data.csv (modo binario).
  *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
+ * \param path char* Puntero al archivo
+ * \param pArrayListPassenger LinkedList* Puntero a la lista
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
@@ -64,44 +64,8 @@ int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
 			if (cantidad == 1) {
 					ll_add(pArrayListPassenger,pPassenger);
 					retorno = 0;
-			} /*else {
-				Passenger_delete(pArrayListPassenger);
-			}*/
+			}
 		} while (feof(pFile) == 0);
 	}
     return retorno;
 }
-
-
-/**
- * @brief
- *
- * @param pathId
- * @return
- */
-int parser_setIdFromBinary (char* pathId) {
-
-	FILE* pFile = NULL;
-	int auxId = -1;
-	int flag = 1;
-
-	pFile = fopen(pathId, "rb");
-
-	if (pFile != NULL) {
-
-		fread(&auxId, sizeof(int), 1, pFile);
-		auxId++;
-		flag = 0;
-	}
-
-	fclose(pFile);
-
-	if (flag == 0) {
-		pFile = fopen(pathId, "wb");
-		fwrite (&auxId, sizeof(int), 1, pFile);
-		fclose(pFile);
-	}
-
-	return auxId;
-}
-

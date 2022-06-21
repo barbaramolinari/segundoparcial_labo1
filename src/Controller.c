@@ -9,7 +9,7 @@
  *
  * \param path char*
  * \param pArrayListPassenger LinkedList*
- * \return int
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int controller_loadFromText(char* path , LinkedList* pArrayListPassenger)
@@ -39,7 +39,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayListPassenger)
  *
  * \param path char*
  * \param pArrayListPassenger LinkedList*
- * \return int
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
@@ -69,9 +69,8 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
 
 /** \brief Alta de pasajero
  *
- * \param path char*
  * \param pArrayListPassenger LinkedList*
- * \return int
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int controller_addPassenger(LinkedList* pArrayListPassenger)
@@ -115,9 +114,8 @@ int controller_addPassenger(LinkedList* pArrayListPassenger)
 
 /** \brief Modificar datos de pasajero
  *
- * \param path char*
  * \param pArrayListPassenger LinkedList*
- * \return int
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int controller_editPassenger(LinkedList* pArrayListPassenger)
@@ -133,9 +131,8 @@ int controller_editPassenger(LinkedList* pArrayListPassenger)
 
 /** \brief Baja de pasajero
  *
- * \param path char*
  * \param pArrayListPassenger LinkedList*
- * \return int
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int controller_removePassenger(LinkedList* pArrayListPassenger)
@@ -175,15 +172,13 @@ int controller_removePassenger(LinkedList* pArrayListPassenger)
 
 /** \brief Listar pasajeros
  *
- * \param path char*
  * \param pArrayListPassenger LinkedList*
- * \return int
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int controller_ListPassenger(LinkedList* pArrayListPassenger)
 {
 	int retorno = -1;
-	//Passenger* pPassenger = NULL;
 
 	if(pArrayListPassenger != NULL){
 		Passenger_Encabezado();
@@ -197,9 +192,8 @@ int controller_ListPassenger(LinkedList* pArrayListPassenger)
 
 /** \brief Ordenar pasajeros
  *
- * \param path char*
  * \param pArrayListPassenger LinkedList*
- * \return int
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int controller_sortPassenger(LinkedList* pArrayListPassenger)
@@ -218,7 +212,7 @@ int controller_sortPassenger(LinkedList* pArrayListPassenger)
  *
  * \param path char*
  * \param pArrayListPassenger LinkedList*
- * \return int
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListPassenger)
@@ -259,7 +253,6 @@ int controller_saveAsText(char* path , LinkedList* pArrayListPassenger)
 				Passenger_getTipoPasajero(pPassenger, &auxTipoPasajero);
 				Passenger_getEstadoVuelo(pPassenger, &auxEstadoVuelo);
 
-				//casteo
 				sprintf(auxIdStr,"%d", auxId);
 				sprintf(auxPrecioStr,"%2.0f", auxPrecio);
 				Passenger_convierteTipoVueloEnChar(auxTipoPasajero, auxTipoPasajeroStr);
@@ -285,7 +278,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListPassenger)
  *
  * \param path char*
  * \param pArrayListPassenger LinkedList*
- * \return int
+ * \return int devuelve 0 en caso de exito o -1 en caso de error.
  *
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
@@ -318,8 +311,3 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
 	}
     return retorno;
 }
-
-
-
-
-

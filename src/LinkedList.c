@@ -91,42 +91,27 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
                         ( 0) Si funciono correctamente
  *
  */
-static int addNode(LinkedList* this, int nodeIndex,void* pElement)
-{
+static int addNode(LinkedList* this, int nodeIndex,void* pElement){
     int returnAux = -1;
-    Node* pNuevoNodo = NULL;
+    Node* pNodo = NULL;
     Node* pAuxNodo = NULL;
 
-
-    if (this != NULL && nodeIndex >= 0 && nodeIndex <= ll_len(this)) {
-
-    	Node* pNuevoNodo = (Node*) malloc (sizeof(Node));
-
-    	if (pNuevoNodo != NULL) {
-    		if (nodeIndex == 0) {
-    			pNuevoNodo-> pNextNode = NULL;
-    			//pNuevoNodo->pNextNode = this->pFirstNode;
-    			// (basura) = NULL
-    			this -> pFirstNode = pNuevoNodo;
-    			// NULL = 0x10239 (direccion de memoria)
-    			//this -> size++;
-    			//returnAux = 0;
+    if(this != NULL && nodeIndex >= 0 && nodeIndex <= ll_len(this)){
+    	pNodo = (Node*)malloc(sizeof(Node));
+    	if(pNodo != NULL){
+    		if(nodeIndex == 0){
+    			pNodo->pNextNode = this->pFirstNode;
+    			this->pFirstNode = pNodo;
     		} else {
-    			Node* pAuxNodo = getNode (this, nodeIndex -1);
-    			if (pAuxNodo != NULL) {
-    				pNuevoNodo->pNextNode = pAuxNodo -> pNextNode;
-    				//indice 5					indice 4 -> NULL (el de la posición 5 apunta a nulo)
-    				pAuxNodo -> pNextNode = pNuevoNodo;
-    				//NULL
-    				pNuevoNodo ->pElement = pElement;
-    				//this ->size++;
-    				//returnAux = 0;
+    			pAuxNodo = getNode(this, nodeIndex - 1);
+    			if(pAuxNodo != NULL){
+    				pNodo->pNextNode = pAuxNodo->pNextNode;
+    				pAuxNodo->pNextNode = pNodo;
     			}
     		}
-    		pNuevoNodo->pElement = pElement;
-    		this->size++;
-    		returnAux = 0;
-
+    		pNodo->pElement = pElement;
+			this->size++;
+			returnAux = 0;
     	}
     }
     return returnAux;
