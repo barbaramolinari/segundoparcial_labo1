@@ -79,6 +79,13 @@ int Passenger_ordenarPorTipoPasajero(void* primerPasajero, void* segundoPasajero
 int Passenger_ordenarPorEstadoVuelo(void* primerPasajero, void* segundoPasajero);
 int Passenger_ListPassenger(LinkedList* pArrayListPassenger);
 
+void Passenger_MenuInformes();
+int cantidadPasajerosFirstClass(void* pElement);
+int cantidadPasajerosExecutiveClass(void* pElement);
+int cantidadPasajerosEconomyClass(void* pElement);
+int filtrarPasajerosFirstClass(void* pElement);
+
+
 
 
 #endif /* PASSENGER_H_ */

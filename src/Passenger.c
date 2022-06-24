@@ -378,7 +378,8 @@ void Passenger_MenuPrincipal(){
 		printf("7- Ordenar pasajeros. \n");
 		printf("8- Guardar los datos de los pasajeros en el archivo data.csv (modo texto). \n");
 		printf("9- Guardar los datos de los pasajeros en el archivo data.csv (modo binario). \n");
-		printf("10- Salir. \n");
+		printf("10- Menu de informes: \n");
+		printf("11- Salir. \n");
 }
 
 /***
@@ -1075,3 +1076,126 @@ int Passenger_writeMaxIdtxt(int id) {
 	return retorno;
 
 }
+
+/***
+ * @brief Muestra por pantalla el menu con opciones de Informe
+ *
+ */
+void Passenger_MenuInformes(){
+	printf("********** Menu de Informes ********** \n\n");
+		printf("1- Informar cantidad de pasajeros por clase: \n");
+		printf("2- Generar archivos de vuelo: \n");
+		printf("3- Calcular millas acumuladas: \n");
+		printf("4- Regresar al menu principal. \n");
+}
+
+
+/*
+ * Se deberá informar la cantidad de pasajeros por clase. Para ello se
+deberá agregar la función “ll_count()”, la cual permitirá contar elementos de la lista bajo algún
+criterio*/
+
+/**
+ * @brief
+ *
+ * @param pElement
+ * @return
+ */
+int cantidadPasajerosFirstClass(void* pElement) {
+	int retorno = -1;
+	int tipoPasajero;
+	Passenger* pPassenger = NULL;
+
+	if (pElement != NULL) {
+		pPassenger = (Passenger*) pElement;
+		if (Passenger_getTipoPasajero(pPassenger, &tipoPasajero) != -1 && tipoPasajero == 1) { //first class es 1
+
+			retorno = 1;
+		}
+	}
+	return retorno;
+}
+
+/**
+ * @brief
+ *
+ * @param pElement
+ * @return
+ */
+int cantidadPasajerosExecutiveClass(void* pElement) {
+	int retorno = -1;
+	int tipoPasajero;
+	Passenger* pPassenger = NULL;
+
+	if (pElement != NULL) {
+		pPassenger = (Passenger*) pElement;
+		if (Passenger_getTipoPasajero(pPassenger, &tipoPasajero) != -1 && tipoPasajero == 2) { //ExecutiveClass es 2
+
+			retorno = 1;
+		}
+	}
+	return retorno;
+}
+
+/**
+ * @brief
+ *
+ * @param pElement
+ * @return
+ */
+int cantidadPasajerosEconomyClass(void* pElement) {
+	int retorno = -1;
+	int tipoPasajero;
+	Passenger* pPassenger = NULL;
+
+	if (pElement != NULL) {
+		pPassenger = (Passenger*) pElement;
+		if (Passenger_getTipoPasajero(pPassenger, &tipoPasajero) != -1 && tipoPasajero == 3) { //EconomyClass es 3
+
+			retorno = 1;
+		}
+	}
+	return retorno;
+}
+
+/**
+ * @brief
+ *
+ * @param pElement
+ * @return
+ */
+int filtrarPasajerosFirstClass(void* pElement) {
+	int retorno = -1;
+	int tipoPasajero;
+	Passenger* pPassenger = NULL;
+
+	if (pElement != NULL) {
+		pPassenger = (Passenger*) pElement;
+		if (Passenger_getTipoPasajero(pPassenger, &tipoPasajero) != -1 && tipoPasajero == 1) {
+			retorno = 0;
+		}
+	}
+	return retorno;
+}
+
+// void (*fn)(void* element)
+/*
+void calcularMillasAcumuladas (void* pElement) {
+	//Passenger* pPassengerAux = NULL;
+	int tipoPasajero;
+	float precio; (get precio)
+	float millas;
+
+	if (Passenger_getTipoPasajero(pElement, &tipoPasajero) == 0) {
+		//hacer casteo
+		if (tipoPasajero == 1) { //FirstClass
+			millas = (precio / 100) *2;
+			//Passenger_setMillas(pElement, millas);
+		} else if (tipoPasajero == 2) {//ExecutiveClass
+			millas = (precio / 100) *3;
+		} else {//EconomyClass
+			millas = precio / 100;
+		}
+	}
+}*/
+

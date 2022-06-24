@@ -311,3 +311,18 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
 	}
     return retorno;
 }
+
+
+int Controller_Filtrar(LinkedList* this) {
+	int retorno = -1;
+	LinkedList* auxLinkedList = NULL;
+
+	if (this != NULL) {
+		auxLinkedList = ll_filter(this, filtrarPasajerosFirstClass);
+		if (auxLinkedList != NULL) {
+			controller_ListPassenger(auxLinkedList);
+			retorno = 0;
+		}
+	}
+	return retorno;
+}

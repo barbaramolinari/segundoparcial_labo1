@@ -513,10 +513,8 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     int len;
     void* auxElement = NULL;
     void* auxElement2 = NULL;
-    //ordena elementos
 
-    //funcion parametros- retorna <0 mayor a cero si el primero es mayor, 0 si son iguales
-    //y >0 menor a cero si el segundo es mayor
+
     if (this != NULL && (order == 0 || order == 1) && pFunc != NULL) {
     	len = ll_len(this);
     	do {
@@ -524,11 +522,11 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     		len --;
 
     		for (int i = 0; i < len; i++) {
-    			auxElement = ll_get (this, i);//obtengo una dir de memoria
-    			auxElement2 = ll_get (this, i+1);//obtengo otra dir de memoria
+    			auxElement = ll_get (this, i);
+    			auxElement2 = ll_get (this, i+1);
 
     			if ((order == 1 && pFunc(auxElement, auxElement2) > 0) || (order == 0 && pFunc(auxElement, auxElement2) < 0)) {
-    				ll_set(this, i, auxElement2);//le pasa el elemento que quiero que ponga en una posicion determinada
+    				ll_set(this, i, auxElement2);
     				ll_set(this, i+1, auxElement);
     				estaOrdenado = 0;
     			}
@@ -544,3 +542,62 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 
 }
 
+/**
+ * @brief La función “ll_count” recibirá una lista y una función “fn”. Se deberá iterar todos los elementos
+de la lista y pasárselos a la funcion “fn”
+ *
+ * @param pArrayListPassenger
+ * @param pFunc
+ * @return
+ */
+int ll_count(LinkedList* pArrayListPassenger, int (*fn)(void* element)){
+
+	int acumulador = 0;
+	int valorIteracion;
+	int largoLista;
+	void* auxElement;
+
+	if(pArrayListPassenger != NULL && *fn != NULL){
+		largoLista = ll_len(pArrayListPassenger);
+		for (int i = 0; i < largoLista; i++) {
+			auxElement = ll_get(pArrayListPassenger, i);
+			valorIteracion = fn(auxElement);
+			if (valorIteracion!=-1) {
+				acumulador = acumulador + valorIteracion;
+			}
+		}
+	}
+	return acumulador;
+}
+
+
+/**
+ * @brief
+ *
+ * @param this
+ * @param fn
+ * @return
+ */
+LinkedList* ll_filter(LinkedList* this, int (*fn)(void* element)) {
+
+	int largo;
+	void *pElement;
+	LinkedList *newLinkedList = NULL;
+
+	if (this != NULL && *fn != NULL) {
+
+		newLinkedList = ll_newLinkedList();
+		if (newLinkedList != NULL) {
+			largo = ll_len(this);
+
+			for (int i = 0; i < largo; i++) {
+				pElement = ll_get(this, i);
+				if (fn(pElement) == 0) {
+					ll_add(newLinkedList, pElement);
+				}
+			}
+
+		}
+	}
+	return newLinkedList;
+}
